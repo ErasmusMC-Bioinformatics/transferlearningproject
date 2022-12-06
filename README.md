@@ -14,7 +14,7 @@ Our model achieves the following performance on :
 
 Pre-train on: STAD,CHOL,SARC,TGCT,COAD (TCGA: https://portal.gdc.cancer.gov/)
 
-Predict survival on: Pancreatic Ductal Adenocarcinoma (https://dcc.icgc.org/)
+Predict survival on: Pancreatic Ductal Adenocarcinoma (ICGC: https://dcc.icgc.org/)
 
 | Model name         | C-index  |
 | ------------------ |---------------- |
