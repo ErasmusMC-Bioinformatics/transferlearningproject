@@ -3,21 +3,9 @@
 This repository is the official implementation of Julian van Toledo's MSc Project. 
 
 ## Requirements
+Python 3.7.12 <br>
+R version 4.2.0 <br>
+Keras - 2.9.0 <br>
 
-See imports in notebook
-
-## Results
-
-Our model achieves the following performance on :
-
-### [Survival prediction on ICGC PDAC data]
-
-Pre-train on: STAD,CHOL,SARC,TGCT,COAD (TCGA: https://portal.gdc.cancer.gov/)
-
-Predict survival on: Pancreatic Ductal Adenocarcinoma (ICGC: https://dcc.icgc.org/)
-
-| Model name         | C-index  |
-| ------------------ |---------------- |
-| Non-transfer learning Model  |     0.655202       |
-| Transfer learning Model  |    0.6782734        |
+See imports in nnetsurvivaltransfer.ipynb for further dependencies
 
