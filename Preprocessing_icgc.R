@@ -68,7 +68,8 @@ rna_df <- rna_df[!duplicated(colnames(rna_df))]
 
 #Load pre-processed PDAC data to get genes to match to
 
-tcga_pdac <- read.csv("C:/Users/julia/PycharmProjects/CoxTnnet/UnscaledMrna_Correct/PAAD.csv",sep=",")
+PDAC_TCGA_Filename <- ""
+tcga_pdac <- read.csv(PDAC_TCGA_Filename,sep=",")
 
 gene_symbols <- as.data.frame(str_split_fixed(tcga_pdac$X, ' / ',2))
 
