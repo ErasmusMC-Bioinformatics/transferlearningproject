@@ -1,4 +1,11 @@
 Results
+cox_nnet
+TransferCox
+metalearning_survival
+DeepSurv
+Logs
+Weights_all
+pivottablejs.html
 cox_nnet/examples
 cox_nnet/docs
 Data
