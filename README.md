@@ -3,9 +3,9 @@
 This repository is the official implementation of Julian van Toledo's MSc Project. 
 
 ## Requirements
-Python 3.7.12
-R version 4.2.0
-Keras - 2.9.0
+Python 3.7.12 \n
+R version 4.2.0 \n
+Keras - 2.9.0 \n
 
 See imports in nnetsurvivaltransfer.ipynb
 
