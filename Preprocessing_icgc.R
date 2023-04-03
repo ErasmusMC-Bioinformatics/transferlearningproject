@@ -10,7 +10,6 @@ library(stringr)
 
 # Set working directory to where script is (dependent on using Rstudio as API)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd("C:/Users/julia/Desktop/Laptop_omnigen_data/CoxTnnet/Pre-processing")
 
 # Load raw RNA-seq data
 raw_data <- read.csv("PDAC_ICGC/exp_seq.tsv",sep="\t",header=TRUE)
@@ -89,10 +88,10 @@ rna_df <- rna_df[,zerocountpercentage < 20]
 rna_norm <- log2(rna_df + 1)
 
 #Export file
-path_export_file <- paste("C:/Users/julia/PycharmProjects/CoxTnnet/UnscaledMrna_Correct/PDAC_ICGC_2.csv",sep="")
+path_export_file <- paste("",sep="")
 write.csv(rna_norm,path_export_file,quote=F,row.names = T)
 
 #Export clinical file
 pdac_clinical <- pdac_clinical[pdac_clinical$icgc_donor_id !="DO33168",]
-path_export_file <- paste("C:/Users/julia/PycharmProjects/CoxTnnet/ToScaleFinal/PDAC_ICGC_clinical.csv",sep="")
+path_export_file <- paste("",sep="")
 write.csv(pdac_clinical,path_export_file,quote=F,row.names = T)
