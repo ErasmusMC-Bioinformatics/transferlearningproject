@@ -1,16 +1,14 @@
 # Imports
 library(textshape)
-library(ggraph)
 library(clusterProfiler)
 library(org.Hs.eg.db)
 library(rstudioapi)
 library(tidyverse)
 library(stringr)
-# library(RegParallel)
+library(RegParallel)
 
 # Set working directory to where script is (dependent on using Rstudio as API)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd("C:/Users/julia/Desktop/Laptop_omnigen_data/CoxTnnet/Pre-processing")
 
 # Load raw RNA-seq data
 raw_data <- read.csv("PDAC_ICGC/exp_seq.tsv",sep="\t",header=TRUE)
@@ -86,7 +84,7 @@ zerocountpercentage <- colSums(rna_df == 0)/(dim(rna_df)[1])*100
 rna_df <- rna_df[,zerocountpercentage < 20]
 
 #Log 2 transform
-rna_norm <- log2(rna_df + 1)
+rna_norm <- log2(rna_df + 0.01)
 
 #Export file
 path_export_file <- paste("C:/Users/julia/PycharmProjects/CoxTnnet/UnscaledMrna_Correct/PDAC_ICGC_2.csv",sep="")
