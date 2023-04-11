@@ -5,9 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: jupyter lab --ip=0.0.0.0 --port=9999 --allow-root --NotebookApp.token=BioinfErasmus123
+    command: jupyter lab --ip=0.0.0.0 --port=9999 --notebook-dir=/data --allow-root --NotebookApp.token=BioinfErasmus123
     volumes:
-    - /mnt/jupyter_lab:/tf
+    - ./:/data
     restart: unless-stopped
     ports:
     - "9999:9999"
@@ -16,5 +16,5 @@ services:
           reservations:
             devices:
               - driver: nvidia
-                count: 2
+                count: 1
                 capabilities: [gpu]
