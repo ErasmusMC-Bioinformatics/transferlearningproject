@@ -1,3 +1,5 @@
+import argparse
+
 import os
 import keras.optimizers
 import pandas as pd
@@ -89,7 +91,7 @@ class CVTuner(keras_tuner.engine.tuner.Tuner):
 
 
 
-def main():
+def main(approach):
     #
     # Import multi-cancer Data
     #
@@ -870,7 +872,10 @@ def main():
 
         # Create Repeated Stratified Kfold cross validation object
 
-        rskf = RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=24)
+        # was 5 but gave error: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+        # assume it's because of missing TIP data?
+        # rskf = RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=24)
+        rskf = RepeatedStratifiedKFold(n_splits=4, n_repeats=10, random_state=24)
 
         k = 1
 
@@ -908,7 +913,26 @@ def main():
             
             if transfer_learning == True:
                 # Transfer weights of source model's second hidden layer to fine tuning model's second hidden layer
-                model.layers[1].set_weights(init_model.layers[1].get_weights())
+                if approach == 1:
+                    model.layers[0].set_weights(init_model.layers[0].get_weights())
+                elif approach == 2:
+                    model.layers[0].set_weights(init_model.layers[0].get_weights())
+                    model.layers[0].trainable = False
+                elif approach == 3:
+                    model.layers[1].set_weights(init_model.layers[1].get_weights())
+                elif approach == 4:
+                    model.layers[1].set_weights(init_model.layers[1].get_weights())
+                    model.layers[0].trainable = False
+                    model.layers[1].trainable = False
+                elif approach == 5:
+                    model.layers[0].set_weights(init_model.layers[0].get_weights())
+                    model.layers[1].set_weights(init_model.layers[1].get_weights())
+                elif approach == 6:
+                    model.layers[0].set_weights(init_model.layers[0].get_weights())
+                    model.layers[1].set_weights(init_model.layers[1].get_weights())
+                    model.layers[0].trainable = False
+                    model.layers[1].trainable = False
+                    
                 
             # Create a tensorboard callback which saves the loss during the training of the model
             tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=("ktuner/logs_pdac_only/fold_" + str(k)), histogram_freq=0, embeddings_freq=0, write_graph=False, update_freq='batch')
@@ -939,7 +963,6 @@ def main():
                 print("Fold: " + str(k) + "\n",file=o)
                 print("C-index train set: " + str(c_index_train), file=o)
                 print("C-index test set: " + str(c_index_test), file=o)
-                o.close()
 
             k += 1
 
@@ -950,7 +973,6 @@ def main():
             print("Average C-index test total: " + str(sum(total_cindexes) / 50),file=o) 
             print(str(total_cindexes),file=o)
             print(str(total_cindexes_train),file=o)
-            o.close() 
     
     ### Comparison Analysis
     # Compare Transfer learning model to Cox-PH and Cox-nnet model
@@ -1118,8 +1140,6 @@ def main():
             print(str(test_performance_transfersnnet),file=o)
             print("\n",file=o)
         
-        o.close()
-        
         k += 1
 
     ### Test survival probabilities for patient 5
@@ -1152,7 +1172,10 @@ def main():
 
     # Create Repeated Stratified Kfold cross validation object
 
-    rskf = RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=24)
+    # was 5 but gave error: UserWarning: The least populated class in y has only 4 members, which is less than n_splits=5.
+    # assume it's because of missing TIP data?
+    # rskf = RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=24)
+    rskf = RepeatedStratifiedKFold(n_splits=4, n_repeats=10, random_state=24)
 
     k = 1
 
@@ -1207,4 +1230,14 @@ def main():
         o.close()
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        prog="EMC Transfer Learning",
+        description="https://github.com/ErasmusMC-Bioinformatics/transferlearningproject",
+    )
+    parser.add_argument("--approach", type=int, choices=[1,2,3,4,5,6], default=3)
+
+    args = parser.parse_args()
+
+    approach = args.approach
+
+    main(approach)
