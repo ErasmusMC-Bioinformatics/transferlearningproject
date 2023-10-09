@@ -907,7 +907,6 @@ def main(approach):
                     model.layers[1].set_weights(init_model.layers[1].get_weights())
                 elif approach == 4:
                     model.layers[1].set_weights(init_model.layers[1].get_weights())
-                    model.layers[0].trainable = False
                     model.layers[1].trainable = False
                 elif approach == 5:
                     model.layers[0].set_weights(init_model.layers[0].get_weights())
