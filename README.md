@@ -9,6 +9,11 @@ This repository contains the official implementation of Julian van Toledo's MSc 
 - R version 4.2.0
 - Docker
 
+### Data prerequisites
+RNA-sequencing data and matching clinical data should be downloaded:
+   TCGA: Use TCGA-Assembler 2 https://github.com/compgenome365/TCGA-Assembler-
+   ICGC: Data portal closed per June 2024, no longer available.
+
 ### Installation
 1. **Docker Setup:**
    - Run the following commands to set up the environment using Docker:
