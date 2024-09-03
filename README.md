@@ -11,8 +11,8 @@ This repository contains the official implementation of Julian van Toledo's MSc 
 
 ### Data prerequisites
 RNA-sequencing data and matching clinical data should be downloaded:
-   TCGA: Use TCGA-Assembler 2 https://github.com/compgenome365/TCGA-Assembler-
-   ICGC: Data portal closed per June 2024, no longer available.
+- TCGA: Use TCGA-Assembler 2 https://github.com/compgenome365/TCGA-Assembler-
+- ICGC: Data portal closed per June 2024, no longer available.
 
 ### Installation
 1. **Docker Setup:**
