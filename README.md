@@ -54,6 +54,4 @@ These scripts are not necessary for the main transfer learning procedure and are
 
 ## Authors
 - Julian van Toledo
-
-## License
-- [MIT License](LICENSE)
+- David van Zessen
