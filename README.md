@@ -26,8 +26,10 @@ RNA-sequencing data and matching clinical data should be downloaded:
 2. **Running the Script:**
    - After setting up the Docker environment, execute the main script:
      ```bash
-     python transferlearning.py
+     python transferlearning.py --approach [1,2,3,4,5,6]
      ```
+   - The approach will determine which transfer learning approach is used for training the model, this is described in the paper (Figure 3)
+     
 
 ## Files and Scripts
 
